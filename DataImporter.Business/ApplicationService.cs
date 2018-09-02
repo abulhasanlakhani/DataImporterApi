@@ -6,32 +6,55 @@ namespace DataImporter.Business
     public class ApplicationService : IApplicationService
     {
         private IExtractor _extractor;
-        private ITaxCalculator _taxCalculator;
+        private IValidationService _validationService;
+        private IMappingService _mappingService;
 
-        public ApplicationService(IExtractor extractor, ITaxCalculator taxCalculator)
+        public ApplicationService(IExtractor extractor, IMappingService mappingService, IValidationService validationService)
         {
             _extractor = extractor;
-            _taxCalculator = taxCalculator;
+            _validationService = validationService;
+            _mappingService = mappingService;
         }
-        public Response<Expense> ProcessEmailText(string emailText)
+
+        public Response<Expense> ProcessExpenseEmailText(string emailText)
         {
+            var expenseFromEmail = new Expense();
+            var response = new Response<Expense>();
+
             var emailXml = _extractor.ExtractXmlFromEmailText(emailText);
 
-            var expenseFromEmail = new Expense
-            {
-                Total = Convert.ToDouble(_extractor.GetXmlNodeFromElement(emailXml, "total").InnerText),
-                CostCentre = _extractor.GetXmlNodeFromElement(emailXml, "cost_centre").InnerText,
-                PaymentMethod = _extractor.GetXmlNodeFromElement(emailXml, "payment_method").InnerText,
-            };
+            _validationService.ValidateEmailXml(response, emailXml);
 
-            expenseFromEmail.Gst = _taxCalculator.CalculateGstFromNetPrice(expenseFromEmail.Total, 15);
-            expenseFromEmail.GrossTotal = expenseFromEmail.Total - expenseFromEmail.Gst;
+            if (!response.Success) return response;
+
+            _validationService.ValidateTotalCostInExpenseEmail(response, emailXml);
+
+            if (!response.Success) return response;
+
+            var expense = _mappingService.MapExpenseEmailXmlToDomain(expenseFromEmail, emailXml);
 
             return new Response<Expense>
             {
-                Success = true,
-                Payload = expenseFromEmail
+                Payload = expense
             };
         }
+
+        public Response<Reservation> ProcessReservationEmailText(string emailText)
+        {
+            var emailXml = _extractor.ExtractXmlFromEmailText(emailText);
+
+            var reservationFromEmail = new Reservation
+            {
+                Vendor = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.Vendor).InnerText,
+                Description = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.Description).InnerText,
+                Date = Convert.ToDateTime(_extractor.GetXmlNodeFromElement(emailXml, DomainConstants.Date).InnerText)
+            };
+
+            return new Response<Reservation>
+            {
+                Payload = reservationFromEmail
+            };
+        }
+        
     }
 }

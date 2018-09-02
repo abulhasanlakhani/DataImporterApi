@@ -4,6 +4,7 @@ namespace DataImporter.Business
 {
     public interface IApplicationService
     {
-        Response<Expense> ProcessEmailText(string emailText);
+        Response<Expense> ProcessExpenseEmailText(string emailText);
+        Response<Reservation> ProcessReservationEmailText(string emailText);
     }
 }

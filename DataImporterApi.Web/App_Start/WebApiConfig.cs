@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json.Serialization;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 
 namespace DataImporterApi.Web
@@ -19,6 +18,13 @@ namespace DataImporterApi.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var jsonFormatter = new JsonMediaTypeFormatter();
+            var settings = jsonFormatter.SerializerSettings;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            config.Formatters.Clear();
+            config.Formatters.Add(jsonFormatter);
         }
     }
 }

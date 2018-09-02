@@ -6,10 +6,19 @@ namespace DataImporter.Business
     {
         public XmlElement ExtractXmlFromEmailText(string emailText)
         {
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml($"<EmailContentWrapper>{emailText}</EmailContentWrapper>");
+            try
+            {
+                if (string.IsNullOrEmpty(emailText)) return null;
 
-            return xmlDoc.DocumentElement;
+                var xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml($"<EmailContentWrapper>{emailText}</EmailContentWrapper>");
+
+                return xmlDoc.DocumentElement;
+            }
+            catch (XmlException)
+            {
+                return null;
+            }
         }
 
         public XmlNode GetXmlNodeFromElement(XmlElement element, string nodeToSearch)

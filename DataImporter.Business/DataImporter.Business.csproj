@@ -45,9 +45,13 @@
     <Compile Include="Extractor.cs" />
     <Compile Include="IApplicationService.cs" />
     <Compile Include="IExtractor.cs" />
+    <Compile Include="IMappingService.cs" />
     <Compile Include="ITaxCalculator.cs" />
+    <Compile Include="IValidationService.cs" />
+    <Compile Include="MappingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxCalculator.cs" />
+    <Compile Include="ValidationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestEmail.txt" />

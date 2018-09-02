@@ -6,10 +6,10 @@ namespace DataImporter.Business
     {
         public double CalculateGstFromNetPrice(double amount, double gstPercentage)
         {
-            //Formula taken from IRD's website
-            //https://www.ird.govt.nz/gst/gst-registering/gst-about/gst-about.html
+            var originalCost = amount / (1 + gstPercentage);
 
-            var gst = amount * 3 / 23;
+            var gst = amount - originalCost;
+
             return Math.Round(gst, 2);
         }
     }

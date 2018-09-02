@@ -1,6 +1,6 @@
-﻿namespace DataImporter.Domain
+﻿namespace DataImporterApi.Web.Models
 {
-    public class Expense
+    public class ExpenseModel
     {
         public string CostCentre { get; set; }
         public double Total { get; set; }

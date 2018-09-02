@@ -63,7 +63,10 @@
   <ItemGroup>
     <Compile Include="ApplicationServiceTests.cs" />
     <Compile Include="ExtractorTests.cs" />
+    <Compile Include="MappingServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxCalculatorTests.cs" />
+    <Compile Include="ValidationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -79,13 +82,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ReservationEmail.txt">
+    <Content Include="TestData\ExpenseEmailWithMissingCostCentreField.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="InvalidExpenseEmail.txt">
+    <Content Include="TestData\ExpenseEmailWithMissingTotalField.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ValidExpenseEmail.txt">
+    <Content Include="TestData\ValidReservationEmail.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\InvalidExpenseEmail.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\ValidExpenseEmail.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
