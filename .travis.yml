@@ -1,7 +1,5 @@
 language: csharp
 solution: DataImporterApi.sln
-mono:
-  - 3.10.0
 before_install:
   - sudo apt-get update --fix-missing
   - sudo apt-get install -y libxml2-dev
