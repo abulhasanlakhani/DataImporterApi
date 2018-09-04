@@ -1,2 +1,4 @@
 language: csharp
 solution: DataImporterApi.sln
+mono:
+  - 3.10.0
