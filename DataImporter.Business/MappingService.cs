@@ -17,17 +17,15 @@ namespace DataImporter.Business
 
         public Expense MapExpenseEmailXmlToDomain(Expense expenseFromEmail, XmlElement emailXml)
         {
-            var expense = expenseFromEmail;
-
             var costCentre = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.CostCentre);
-            
-            expense.CostCentre = costCentre != null ? _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.CostCentre).InnerText : "UNKNOWN";
-            expense.Total = Convert.ToDouble(_extractor.GetXmlNodeFromElement(emailXml, DomainConstants.Total).InnerText);
-            expense.PaymentMethod = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.PaymentMethod).InnerText;
-            expense.Gst = _taxCalculator.CalculateGstFromNetPrice(expense.Total, 0.15);
-            expense.GrossTotal = expense.Total - expense.Gst;
 
-            return expense;
+            expenseFromEmail.CostCentre = costCentre != null ? _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.CostCentre).InnerText : "UNKNOWN";
+            expenseFromEmail.Total = Convert.ToDouble(_extractor.GetXmlNodeFromElement(emailXml, DomainConstants.Total).InnerText);
+            expenseFromEmail.PaymentMethod = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.PaymentMethod).InnerText;
+            expenseFromEmail.Gst = _taxCalculator.CalculateGstFromNetPrice(expenseFromEmail.Total, 0.15);
+            expenseFromEmail.GrossTotal = expenseFromEmail.Total - expenseFromEmail.Gst;
+
+            return expenseFromEmail;
         }
     }
 }
