@@ -20,11 +20,17 @@ namespace DataImporter.Tests
         private string _path;
         private string _directory;
 
-        [Test]
-        public void Process_Valid_Expense_Email_Text_Test()
+        [SetUp]
+        public void Setup()
         {
             _SetupEmailWithEmbeddedXmlContent();
 
+            _applicationService = new ApplicationService(_extractor.Object, _mappingService.Object, _validationService.Object);
+        }
+
+        [Test]
+        public void Process_Valid_Expense_Email_Text_Test()
+        {
             var response = _applicationService.ProcessExpenseEmailText(File.ReadAllText(_path));
 
             Assert.That(response, Is.Not.Null);
@@ -49,8 +55,6 @@ namespace DataImporter.Tests
             _extractor = new Mock<IExtractor>();
             _validationService = new Mock<IValidationService>();
             _mappingService = new Mock<IMappingService>();
-
-            _applicationService = new ApplicationService(_extractor.Object, _mappingService.Object, _validationService.Object);
 
             _taxCalculator.Setup(m => m.CalculateGstFromNetPrice(It.IsAny<double>(), It.IsAny<double>()))
                 .Returns(134);

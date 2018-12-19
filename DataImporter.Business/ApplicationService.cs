@@ -5,9 +5,9 @@ namespace DataImporter.Business
 {
     public class ApplicationService : IApplicationService
     {
-        private IExtractor _extractor;
-        private IValidationService _validationService;
-        private IMappingService _mappingService;
+        private readonly IExtractor _extractor;
+        private readonly IValidationService _validationService;
+        private readonly IMappingService _mappingService;
 
         public ApplicationService(IExtractor extractor, IMappingService mappingService, IValidationService validationService)
         {

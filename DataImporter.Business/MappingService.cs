@@ -6,8 +6,8 @@ namespace DataImporter.Business
 {
     public class MappingService : IMappingService
     {
-        private IExtractor _extractor;
-        private ITaxCalculator _taxCalculator;
+        private readonly IExtractor _extractor;
+        private readonly ITaxCalculator _taxCalculator;
 
         public MappingService(IExtractor extractor, ITaxCalculator taxCalculator)
         {
@@ -17,11 +17,13 @@ namespace DataImporter.Business
 
         public Expense MapExpenseEmailXmlToDomain(Expense expenseFromEmail, XmlElement emailXml)
         {
-            var costCentre = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.CostCentre);
+            var costCentreNode = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.CostCentre);
+            var totalNode = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.Total);
+            var paymentMethodNode = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.PaymentMethod);
 
-            expenseFromEmail.CostCentre = costCentre != null ? _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.CostCentre).InnerText : "UNKNOWN";
-            expenseFromEmail.Total = Convert.ToDouble(_extractor.GetXmlNodeFromElement(emailXml, DomainConstants.Total).InnerText);
-            expenseFromEmail.PaymentMethod = _extractor.GetXmlNodeFromElement(emailXml, DomainConstants.PaymentMethod).InnerText;
+            expenseFromEmail.CostCentre = costCentreNode != null ? costCentreNode.InnerText : "UNKNOWN";
+            expenseFromEmail.Total = Convert.ToDouble(totalNode.InnerText);
+            expenseFromEmail.PaymentMethod = paymentMethodNode.InnerText;
             expenseFromEmail.Gst = _taxCalculator.CalculateGstFromNetPrice(expenseFromEmail.Total, 0.15);
             expenseFromEmail.GrossTotal = expenseFromEmail.Total - expenseFromEmail.Gst;
 
