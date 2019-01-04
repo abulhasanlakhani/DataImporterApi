@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataImporter.Tests", "DataI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataImporter.Domain", "DataImporter.Domain\DataImporter.Domain.csproj", "{9281C81C-649B-4DC5-BBFF-DFC3E2DDC506}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataImporterApi", "DataImporterApi\DataImporterApi.csproj", "{3B0F6939-DEE1-4E4D-AE3F-D8A99DA495E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9281C81C-649B-4DC5-BBFF-DFC3E2DDC506}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9281C81C-649B-4DC5-BBFF-DFC3E2DDC506}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9281C81C-649B-4DC5-BBFF-DFC3E2DDC506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B0F6939-DEE1-4E4D-AE3F-D8A99DA495E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B0F6939-DEE1-4E4D-AE3F-D8A99DA495E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B0F6939-DEE1-4E4D-AE3F-D8A99DA495E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B0F6939-DEE1-4E4D-AE3F-D8A99DA495E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
