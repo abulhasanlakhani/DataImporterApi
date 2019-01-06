@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace DataImporterApi
 {
@@ -20,6 +21,7 @@ namespace DataImporterApi
         {
             services.AddCors(options => options.AddPolicy("MyPolicy", policy => policy.AllowAnyOrigin()));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +40,9 @@ namespace DataImporterApi
             app.UseHttpsRedirection();
             app.UseCors("MyPolicy");
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUi3();
         }
     }
 }
