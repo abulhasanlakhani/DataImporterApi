@@ -5,7 +5,7 @@ namespace DataImporter.Business
 {
     public class ValidationService : IValidationService
     {
-        private IExtractor _extractor;
+        private readonly IExtractor _extractor;
 
         public ValidationService(IExtractor extractor)
         {
