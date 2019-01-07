@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DataImporter.Business;
+using DataImporterApi.Filters;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
 
 namespace DataImporterApi
 {
@@ -20,8 +21,21 @@ namespace DataImporterApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options => options.AddPolicy("MyPolicy", policy => policy.AllowAnyOrigin()));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+                .AddMvc(options => 
+                {
+                    options.Filters.Add<JsonExceptionFilter>();
+                    options.Filters.Add<RequireHttpsOrCloseAttribute>();
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddSwaggerDocument();
+
+            services.AddTransient<IApplicationService, ApplicationService>();
+            services.AddTransient<IExtractor, Extractor>();
+            services.AddTransient<IMappingService, MappingService>();
+            services.AddTransient<IValidationService, ValidationService>();
+            services.AddTransient<ITaxCalculator, TaxCalculator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +51,6 @@ namespace DataImporterApi
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseCors("MyPolicy");
             app.UseMvc();
 

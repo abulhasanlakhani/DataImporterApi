@@ -1,4 +1,6 @@
-﻿using DataImporterApi.Models;
+﻿using DataImporter.Business;
+using DataImporterApi.Extensions;
+using DataImporterApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataImporterApi.Controllers
@@ -7,11 +9,18 @@ namespace DataImporterApi.Controllers
     [ApiController]
     public class ExpenseController : ControllerBase
     {
+        private readonly IApplicationService _applicationService;
+
+        public ExpenseController(IApplicationService applicationService)
+        {
+            _applicationService = applicationService;
+        }
+
         [HttpPost(Name = nameof(CreateExpense))]
         [ProducesResponseType(200)]
-        public ActionResult CreateExpense([FromBody] ExpenseRequest expenseRequest)
+        public IActionResult CreateExpense([FromBody] ExpenseRequestModel expenseRequest)
         {
-            return Ok(new { expenseRequest.EmailText });
+            return Ok(_applicationService.ProcessExpenseEmailText(expenseRequest.EmailText).ToViewModel());
         }
     }
 }
