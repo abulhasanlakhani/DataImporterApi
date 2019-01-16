@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataImporterApi", "Presenta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataImporter.Tests", "Tests\DataImporter.Tests\DataImporter.Tests.csproj", "{B6937BE3-E305-4B14-AEED-F86E022E84D9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{AB6CE090-F7B3-4481-B2A7-D687F4D87371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataImporter.Persistence", "Infrastructure\DataImporter.Persistence\DataImporter.Persistence.csproj", "{733D3B76-FEC0-4A65-A43C-08FA642CE397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{B6937BE3-E305-4B14-AEED-F86E022E84D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6937BE3-E305-4B14-AEED-F86E022E84D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6937BE3-E305-4B14-AEED-F86E022E84D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{733D3B76-FEC0-4A65-A43C-08FA642CE397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{733D3B76-FEC0-4A65-A43C-08FA642CE397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{733D3B76-FEC0-4A65-A43C-08FA642CE397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{733D3B76-FEC0-4A65-A43C-08FA642CE397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +56,7 @@ Global
 		{04E6BBB4-B327-4AF9-B317-5DAA0AE43A6B} = {34ED9BDE-E9E0-4444-B294-1012AA89DDDC}
 		{A3866287-A50A-4FB3-8847-C13137E1043E} = {15CFF91A-25EF-4BF8-A287-4EAE8912CA8B}
 		{B6937BE3-E305-4B14-AEED-F86E022E84D9} = {767E1609-79DD-4142-8772-5931FF704C20}
+		{733D3B76-FEC0-4A65-A43C-08FA642CE397} = {AB6CE090-F7B3-4481-B2A7-D687F4D87371}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A696D143-877F-4E71-BB13-EA183DA140B7}
