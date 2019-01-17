@@ -20,7 +20,7 @@
     "DataImporterApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "swagger",
       "applicationUrl": "https://localhost:44380;http://localhost:56943",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
