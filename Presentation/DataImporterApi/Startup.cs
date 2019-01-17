@@ -1,8 +1,10 @@
 ﻿using DataImporter.Business;
+using DataImporter.Persistence;
 using DataImporterApi.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -36,6 +38,10 @@ namespace DataImporterApi
             services.AddTransient<IMappingService, MappingService>();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<ITaxCalculator, TaxCalculator>();
+
+            // Add DbContext using SQL Server Provider
+            services.AddDbContext<DataImporterContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DataImporterConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
