@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\DataImporter.Business\DataImporter.Business.csproj" />
     <ProjectReference Include="..\..\Core\DataImporter.Domain\DataImporter.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\DataImporter.Persistence\DataImporter.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

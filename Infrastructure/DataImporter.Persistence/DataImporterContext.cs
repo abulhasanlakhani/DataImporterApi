@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataImporter.Domain;
+﻿using DataImporter.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataImporter.Persistence
 {
     public class DataImporterContext : DbContext
     {
+        public DataImporterContext(DbContextOptions<DataImporterContext> options) 
+            : base(options)
+        { }
+
         public DbSet<Expense> Expenses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataImporterContext).Assembly);
+        }     
     }
 }
