@@ -1,5 +1,4 @@
 ﻿using DataImporter.Business;
-using DataImporter.Domain;
 using Moq;
 using NUnit.Framework;
 using System.IO;

@@ -1,5 +1,4 @@
-﻿using DataImporter.Business;
-using DataImporter.Business.Interfaces;
+﻿using DataImporter.Business.Interfaces;
 using DataImporterApi.Extensions;
 using DataImporterApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;

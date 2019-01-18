@@ -1,6 +1,5 @@
 ﻿using System.Xml;
 using DataImporter.Business.Interfaces;
-using DataImporter.Domain;
 using DataImporter.Domain.Entities;
 using DataImporter.Domain.Infrastructure;
 using ValidationType = DataImporter.Domain.Infrastructure.ValidationType;
