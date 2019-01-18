@@ -1,4 +1,6 @@
 ﻿using DataImporter.Domain;
+using DataImporter.Domain.Entities;
+using DataImporter.Domain.Infrastructure;
 
 namespace DataImporter.Business.Interfaces
 {

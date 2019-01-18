@@ -5,6 +5,8 @@ using DataImporter.Business;
 using DataImporter.Business.Interfaces;
 using DataImporter.Business.Services;
 using DataImporter.Domain;
+using DataImporter.Domain.Entities;
+using DataImporter.Domain.Infrastructure;
 using Moq;
 using NUnit.Framework;
 

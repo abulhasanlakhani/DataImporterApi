@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System.IO;
 using System.Reflection;
 using DataImporter.Business.Services;
+using DataImporter.Domain.Infrastructure;
 
 namespace DataImporter.Tests
 {

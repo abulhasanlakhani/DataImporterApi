@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataImporter.Domain
+namespace DataImporter.Domain.Entities
 {
     public class Reservation
     {

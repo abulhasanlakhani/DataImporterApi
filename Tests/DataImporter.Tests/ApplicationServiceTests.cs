@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Xml;
 using DataImporter.Business.Interfaces;
 using DataImporter.Business.Services;
+using DataImporter.Domain.Entities;
+using DataImporter.Domain.Infrastructure;
 
 namespace DataImporter.Tests
 {

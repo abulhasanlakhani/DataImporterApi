@@ -1,5 +1,6 @@
 ﻿using System.Xml;
 using DataImporter.Domain;
+using DataImporter.Domain.Entities;
 
 namespace DataImporter.Business.Interfaces
 {

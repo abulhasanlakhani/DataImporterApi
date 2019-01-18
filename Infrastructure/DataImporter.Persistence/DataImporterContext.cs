@@ -1,4 +1,5 @@
 ﻿using DataImporter.Domain;
+using DataImporter.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataImporter.Persistence
