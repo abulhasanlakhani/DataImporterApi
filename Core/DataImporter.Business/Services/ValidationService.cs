@@ -17,14 +17,13 @@ namespace DataImporter.Business.Services
 
         public void ValidateEmailXml(Response<Expense> response, XmlElement emailXml)
         {
-            if (emailXml == null)
+            if (emailXml != null) return;
+
+            response.Payload = null;
+            response.Validation = new Validation(ValidationType.Error)
             {
-                response.Payload = null;
-                response.Validation = new Validation(ValidationType.Error)
-                {
-                    Message = "Problem in parsing XML or Missing opening/closing tags"
-                };
-            }
+                Message = "Problem in parsing XML or Missing opening/closing tags"
+            };
         }
 
         public void ValidateTotalCostInExpenseEmail(Response<Expense> response, XmlElement emailXml)

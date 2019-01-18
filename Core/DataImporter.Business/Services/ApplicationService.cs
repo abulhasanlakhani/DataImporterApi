@@ -57,6 +57,15 @@ namespace DataImporter.Business.Services
                 Payload = reservationFromEmail
             };
         }
-        
+
+        public Response<int> CreateNewExpense(Expense expenseToCreate)
+        {
+            var response = new Response<int>
+            {
+                Payload = 1
+            };
+
+            return response;
+        }
     }
 }

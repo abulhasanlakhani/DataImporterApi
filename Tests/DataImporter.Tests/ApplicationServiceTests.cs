@@ -1,4 +1,5 @@
-﻿using DataImporter.Business;
+﻿using System;
+using DataImporter.Business;
 using Moq;
 using NUnit.Framework;
 using System.IO;
@@ -42,6 +43,24 @@ namespace DataImporter.Tests
             Assert.That(response.Payload.Gst, Is.EqualTo(133.57));
             Assert.That(response.Payload.GrossTotal, Is.EqualTo(890.44));
             Assert.That(response.Payload.Total, Is.EqualTo(1024.01));
+        }
+
+        [Test]
+        public void Expense_Object_Should_Not_Be_Null()
+        {
+            Assert.Throws<ArgumentNullException>(() => _applicationService.CreateNewExpense(null));
+        }
+
+        [Test]
+        public void New_Expense_Should_Not_Be_Created_Without_Total_Cost()
+        {
+            var expenseToCreate = new Expense
+            {
+                CostCentre = "CC1",
+                PaymentMethod = "Credit Card"
+            };
+
+            Assert.Throws<ArgumentNullException>(() => _applicationService.CreateNewExpense(expenseToCreate));
         }
 
         #region Private Methods
