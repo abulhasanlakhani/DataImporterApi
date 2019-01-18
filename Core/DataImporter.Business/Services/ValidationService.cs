@@ -1,7 +1,8 @@
-﻿using DataImporter.Domain;
-using System.Xml;
+﻿using System.Xml;
+using DataImporter.Business.Interfaces;
+using DataImporter.Domain;
 
-namespace DataImporter.Business
+namespace DataImporter.Business.Services
 {
     public class ValidationService : IValidationService
     {

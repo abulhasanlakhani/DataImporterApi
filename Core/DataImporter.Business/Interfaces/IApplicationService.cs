@@ -1,6 +1,6 @@
 ﻿using DataImporter.Domain;
 
-namespace DataImporter.Business
+namespace DataImporter.Business.Interfaces
 {
     public interface IApplicationService
     {

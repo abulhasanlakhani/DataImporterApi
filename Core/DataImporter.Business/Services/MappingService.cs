@@ -1,8 +1,9 @@
-﻿using DataImporter.Domain;
-using System;
+﻿using System;
 using System.Xml;
+using DataImporter.Business.Interfaces;
+using DataImporter.Domain;
 
-namespace DataImporter.Business
+namespace DataImporter.Business.Services
 {
     public class MappingService : IMappingService
     {

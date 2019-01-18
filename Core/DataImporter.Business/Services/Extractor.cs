@@ -1,6 +1,6 @@
 ﻿using System.Xml;
 
-namespace DataImporter.Business
+namespace DataImporter.Business.Services
 {
     public class Extractor : IExtractor
     {

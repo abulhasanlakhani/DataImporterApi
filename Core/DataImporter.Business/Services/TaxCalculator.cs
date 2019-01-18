@@ -1,6 +1,7 @@
 ﻿using System;
+using DataImporter.Business.Interfaces;
 
-namespace DataImporter.Business
+namespace DataImporter.Business.Services
 {
     public class TaxCalculator : ITaxCalculator
     {
