@@ -1,7 +1,10 @@
-﻿using DataImporter.Domain;
-using System.Xml;
+﻿using System.Xml;
+using DataImporter.Business.Interfaces;
+using DataImporter.Domain.Entities;
+using DataImporter.Domain.Infrastructure;
+using ValidationType = DataImporter.Domain.Infrastructure.ValidationType;
 
-namespace DataImporter.Business
+namespace DataImporter.Business.Services
 {
     public class ValidationService : IValidationService
     {
@@ -17,7 +20,7 @@ namespace DataImporter.Business
             if (emailXml == null)
             {
                 response.Payload = null;
-                response.Validation = new Validation(Domain.ValidationType.Error)
+                response.Validation = new Validation(ValidationType.Error)
                 {
                     Message = "Problem in parsing XML or Missing opening/closing tags"
                 };
@@ -30,7 +33,7 @@ namespace DataImporter.Business
 
             if (totalNode == null)
             {
-                var validation = new Validation(Domain.ValidationType.Error)
+                var validation = new Validation(ValidationType.Error)
                 {
                     Message = "Total Field Missing"
                 };

@@ -1,4 +1,5 @@
-﻿using DataImporter.Domain;
+﻿using DataImporter.Domain.Entities;
+using DataImporter.Domain.Infrastructure;
 using DataImporterApi.ViewModels;
 
 namespace DataImporterApi.Extensions

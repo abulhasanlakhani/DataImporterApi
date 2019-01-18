@@ -2,14 +2,16 @@
 using System.Reflection;
 using System.Xml;
 using DataImporter.Business;
-using DataImporter.Domain;
+using DataImporter.Business.Interfaces;
+using DataImporter.Business.Services;
+using DataImporter.Domain.Entities;
+using DataImporter.Domain.Infrastructure;
 using Moq;
 using NUnit.Framework;
 
 namespace DataImporter.Tests
 {
     [TestFixture]
-    [Description("Just a placeholder test. Something I need to do in future")]
     public class MappingServiceTests
     {
         private Mock<IExtractor> _extractor;

@@ -1,7 +1,9 @@
-﻿using DataImporter.Domain;
-using System;
+﻿using System;
+using DataImporter.Business.Interfaces;
+using DataImporter.Domain.Entities;
+using DataImporter.Domain.Infrastructure;
 
-namespace DataImporter.Business
+namespace DataImporter.Business.Services
 {
     public class ApplicationService : IApplicationService
     {

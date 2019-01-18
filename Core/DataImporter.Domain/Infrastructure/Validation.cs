@@ -1,4 +1,4 @@
-﻿namespace DataImporter.Domain
+﻿namespace DataImporter.Domain.Infrastructure
 {
     public class Validation
     {

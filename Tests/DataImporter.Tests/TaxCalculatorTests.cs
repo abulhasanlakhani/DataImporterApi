@@ -1,6 +1,5 @@
-﻿using DataImporter.Business;
-using NUnit.Framework;
-using System;
+﻿using NUnit.Framework;
+using DataImporter.Business.Services;
 
 namespace DataImporter.Tests
 {
