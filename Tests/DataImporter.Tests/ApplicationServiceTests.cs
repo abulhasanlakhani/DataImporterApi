@@ -9,13 +9,16 @@ using DataImporter.Business.Interfaces;
 using DataImporter.Business.Services;
 using DataImporter.Domain.Entities;
 using DataImporter.Domain.Infrastructure;
+using DataImporter.Persistence;
 using NUnit.Framework.Constraints;
 
 namespace DataImporter.Tests
 {
     [TestFixture]
-    public class ApplicationServiceTests
+    public class ApplicationServiceTests : TestBase, IDisposable
     {
+        private DataImporterContext _context;
+
         private Mock<IExtractor> _extractor;
         private Mock<ITaxCalculator> _taxCalculator;
         private Mock<IMappingService> _mappingService;
@@ -28,11 +31,12 @@ namespace DataImporter.Tests
         [SetUp]
         public void Setup()
         {
+            _context = _InitializeAndGetDbContext();
             _SetupEmailWithEmbeddedXmlContent();
 
-            _applicationService = new ApplicationService(_extractor.Object, _mappingService.Object, _validationService.Object);
+            _applicationService = new ApplicationService(_extractor.Object, _mappingService.Object, _validationService.Object, _context);
         }
-
+        
         [Test]
         public void Process_Valid_Expense_Email_Text_Test()
         {
@@ -96,14 +100,7 @@ namespace DataImporter.Tests
             _extractor.Setup(m => m.GetXmlNodeFromElement(It.IsAny<XmlElement>(), DomainConstants.Total))
                 .Returns(xmlDoc.DocumentElement.SelectSingleNode($"//{DomainConstants.Total}"));
             _mappingService.Setup(m => m.MapExpenseEmailXmlToDomain(It.IsAny<Expense>(), It.IsAny<XmlElement>()))
-                .Returns(new Expense
-                {
-                    CostCentre = "DEV002",
-                    Total = 1024.01,
-                    PaymentMethod = "Personal Card",
-                    Gst = 133.57,
-                    GrossTotal = 890.44
-                });
+                .Returns(_context.Expenses.Find(3));
         }
 
         private void _SetupEmailWithXmlStyleMarkUp()
@@ -118,7 +115,7 @@ namespace DataImporter.Tests
             _validationService = new Mock<IValidationService>();
             _mappingService = new Mock<IMappingService>();
 
-            _applicationService = new ApplicationService(_extractor.Object, _mappingService.Object, _validationService.Object);
+            _applicationService = new ApplicationService(_extractor.Object, _mappingService.Object, _validationService.Object, _context);
 
             _taxCalculator.Setup(m => m.CalculateGstFromNetPrice(It.IsAny<double>(), It.IsAny<double>()))
                 .Returns(134);
@@ -132,6 +129,46 @@ namespace DataImporter.Tests
                 .Returns(xmlDoc.DocumentElement.SelectSingleNode($"//total"));
         }
 
+        private DataImporterContext _InitializeAndGetDbContext()
+        {
+            var context = GetDbContext();
+
+            context.Expenses.Add(new Expense
+            {
+                Id = 1,
+                CostCentre = "CC1",
+                PaymentMethod = "Card",
+                Total = 1000.00
+            });
+
+            context.Expenses.Add(new Expense
+            {
+                Id = 2,
+                CostCentre = "CC1",
+                PaymentMethod = "Card",
+                Total = 2000.00
+            });
+
+            context.Expenses.Add(new Expense
+            {
+                Id = 3,
+                CostCentre = "DEV002",
+                Total = 1024.01,
+                PaymentMethod = "Personal Card",
+                Gst = 133.57,
+                GrossTotal = 890.44
+            });
+
+            context.SaveChanges();
+
+            return context;
+        }
+
         #endregion
+
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
     }
 }

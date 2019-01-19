@@ -2,6 +2,7 @@
 using DataImporter.Business.Interfaces;
 using DataImporter.Domain.Entities;
 using DataImporter.Domain.Infrastructure;
+using DataImporter.Persistence;
 
 namespace DataImporter.Business.Services
 {
@@ -10,12 +11,14 @@ namespace DataImporter.Business.Services
         private readonly IExtractor _extractor;
         private readonly IValidationService _validationService;
         private readonly IMappingService _mappingService;
+        private readonly DataImporterContext _context;
 
-        public ApplicationService(IExtractor extractor, IMappingService mappingService, IValidationService validationService)
+        public ApplicationService(IExtractor extractor, IMappingService mappingService, IValidationService validationService, DataImporterContext context)
         {
             _extractor = extractor;
             _validationService = validationService;
             _mappingService = mappingService;
+            _context = context;
         }
 
         public Response<Expense> ProcessExpenseEmailText(string emailText)
