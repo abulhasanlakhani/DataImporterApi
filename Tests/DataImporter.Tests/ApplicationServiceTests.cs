@@ -63,6 +63,12 @@ namespace DataImporter.Tests
             Assert.Throws<ArgumentNullException>(() => _applicationService.CreateNewExpense(expenseToCreate));
         }
 
+        [Test]
+        public void Get_Expense_By_Id()
+        {
+            var expense = _applicationService.GetExpenseById(1);
+        }
+
         #region Private Methods
 
         private void _SetupEmailWithEmbeddedXmlContent()

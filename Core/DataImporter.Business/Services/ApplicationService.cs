@@ -77,5 +77,10 @@ namespace DataImporter.Business.Services
 
             return response;
         }
+
+        public Response<Expense> GetExpenseById(int i)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

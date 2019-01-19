@@ -8,5 +8,6 @@ namespace DataImporter.Business.Interfaces
         Response<Expense> ProcessExpenseEmailText(string emailText);
         Response<Reservation> ProcessReservationEmailText(string emailText);
         Response<int> CreateNewExpense(Expense expenseToCreate);
+        Response<Expense> GetExpenseById(int i);
     }
 }
