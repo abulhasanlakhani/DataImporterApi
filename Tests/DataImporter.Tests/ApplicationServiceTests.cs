@@ -9,6 +9,7 @@ using DataImporter.Business.Interfaces;
 using DataImporter.Business.Services;
 using DataImporter.Domain.Entities;
 using DataImporter.Domain.Infrastructure;
+using NUnit.Framework.Constraints;
 
 namespace DataImporter.Tests
 {
@@ -66,7 +67,7 @@ namespace DataImporter.Tests
         [Test]
         public void Get_Expense_By_Id()
         {
-            var expense = _applicationService.GetExpenseById(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => _applicationService.GetExpenseById(0));
         }
 
         #region Private Methods

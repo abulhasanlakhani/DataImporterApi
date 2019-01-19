@@ -78,9 +78,14 @@ namespace DataImporter.Business.Services
             return response;
         }
 
-        public Response<Expense> GetExpenseById(int i)
+        public Response<Expense> GetExpenseById(int expenseId)
         {
-            throw new NotImplementedException();
+            if (expenseId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(expenseId), "Expense id should be greater than Zero (0)");
+            }
+
+            return new Response<Expense>();
         }
     }
 }
