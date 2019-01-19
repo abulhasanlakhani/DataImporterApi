@@ -60,6 +60,16 @@ namespace DataImporter.Business.Services
 
         public Response<int> CreateNewExpense(Expense expenseToCreate)
         {
+            if (expenseToCreate == null)
+            {
+                throw new ArgumentNullException(nameof(expenseToCreate), "Cannot be null");
+            }
+
+            if (expenseToCreate.Total == null)
+            {
+                throw new ArgumentNullException(nameof(expenseToCreate), "Total Cost cannot be null");
+            }
+            
             var response = new Response<int>
             {
                 Payload = 1

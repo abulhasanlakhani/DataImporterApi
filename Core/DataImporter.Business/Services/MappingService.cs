@@ -26,8 +26,8 @@ namespace DataImporter.Business.Services
             expenseFromEmail.CostCentre = costCentreNode != null ? costCentreNode.InnerText : "UNKNOWN";
             expenseFromEmail.Total = Convert.ToDouble(totalNode.InnerText);
             expenseFromEmail.PaymentMethod = paymentMethodNode.InnerText;
-            expenseFromEmail.Gst = _taxCalculator.CalculateGstFromNetPrice(expenseFromEmail.Total, 0.15);
-            expenseFromEmail.GrossTotal = expenseFromEmail.Total - expenseFromEmail.Gst;
+            expenseFromEmail.Gst = _taxCalculator.CalculateGstFromNetPrice(expenseFromEmail.Total.Value, 0.15);
+            expenseFromEmail.GrossTotal = expenseFromEmail.Total.Value - expenseFromEmail.Gst;
 
             return expenseFromEmail;
         }

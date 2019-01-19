@@ -30,7 +30,7 @@ namespace DataImporterApi.Extensions
                 GrossTotal = expense.GrossTotal,
                 Gst = expense.Gst,
                 PaymentMethod = expense.PaymentMethod,
-                Total = expense.Total
+                Total = expense.Total ?? 0
             }; 
         }
 
