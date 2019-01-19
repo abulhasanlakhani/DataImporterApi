@@ -88,7 +88,12 @@ namespace DataImporter.Business.Services
                 throw new ArgumentOutOfRangeException(nameof(expenseId), "Expense id should be greater than Zero (0)");
             }
 
-            return new Response<Expense>();
+            var expense = _context.Expenses.Find(expenseId);
+
+            return new Response<Expense>
+            {
+                Payload = expense
+            };
         }
     }
 }

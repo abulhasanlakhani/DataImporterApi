@@ -10,7 +10,6 @@ using DataImporter.Business.Services;
 using DataImporter.Domain.Entities;
 using DataImporter.Domain.Infrastructure;
 using DataImporter.Persistence;
-using NUnit.Framework.Constraints;
 
 namespace DataImporter.Tests
 {
@@ -69,9 +68,19 @@ namespace DataImporter.Tests
         }
 
         [Test]
-        public void Get_Expense_By_Id()
+        public void Expense_Id_Must_Be_Greater_Than_Zero()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _applicationService.GetExpenseById(0));
+        }
+
+        [Test]
+        public void Valid_Expense_Object_Is_Returned()
+        {
+            var expense = _applicationService.GetExpenseById(1);
+
+            Assert.That(expense, Is.Not.Null);
+            Assert.That(expense.Payload, Is.Not.Null);
+            Assert.That(expense.Payload.Equals(_context.Expenses.Find(1)));
         }
 
         #region Private Methods
