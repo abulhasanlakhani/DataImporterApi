@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -31,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="NUnit" Version="3.11.0" />
@@ -39,6 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\DataImporter.Business\DataImporter.Business.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\DataImporter.Persistence\DataImporter.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
