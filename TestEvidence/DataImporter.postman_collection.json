@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "ac1412b2-6c20-4c39-8402-6e1e04d85445",
+		"name": "DataImporter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Valid Request",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre><total>1024.01</total><payment_method>personal card</payment_method></expense>\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44380/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44380",
+					"path": [
+						""
+					]
+				},
+				"description": "Valid request with properly formed xml"
+			},
+			"response": []
+		},
+		{
+			"name": "Missing Closing Tag",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre><total>1024.01<payment_method>personal card</payment_method></expense>\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44380/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44380",
+					"path": [
+						""
+					]
+				},
+				"description": "Invalid request with missing closing tag of one the xml element inside the string"
+			},
+			"response": []
+		},
+		{
+			"name": "Missing Opening Tag",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre>1024.01</total><payment_method>personal card</payment_method></expense>\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44380/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44380",
+					"path": [
+						""
+					]
+				},
+				"description": "Invalid request with missing opening tag"
+			},
+			"response": []
+		},
+		{
+			"name": "Cost Centre Missing",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><total>1024.01</total><payment_method>personal card</payment_method></expense>\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44380/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44380",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Email text missing",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tEmailText: \"\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44380/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44380",
+					"path": [
+						""
+					]
+				},
+				"description": "Invalid request with email text missing"
+			},
+			"response": []
+		},
+		{
+			"name": "Total Missing",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre><payment_method>personal card</payment_method></expense>\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44380/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44380",
+					"path": [
+						""
+					]
+				},
+				"description": "Invalid request with total field missing"
+			},
+			"response": []
+		}
+	]
+}
