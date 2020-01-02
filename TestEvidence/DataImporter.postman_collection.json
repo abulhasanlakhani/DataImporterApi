@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ac1412b2-6c20-4c39-8402-6e1e04d85445",
+		"_postman_id": "537612ec-8a55-4147-8be1-d02e369800a2",
 		"name": "DataImporter",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,21 +18,32 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre><total>1024.01</total><payment_method>personal card</payment_method></expense>\"\n}"
+					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre><total>1024.01</total><payment_method>personal card</payment_method></expense>\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "https://localhost:44380/",
+					"raw": "https://localhost:44380/api/expense",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "44380",
 					"path": [
-						""
+						"api",
+						"expense"
 					]
 				},
 				"description": "Valid request with properly formed xml"
@@ -52,6 +63,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -59,14 +75,15 @@
 					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre><total>1024.01<payment_method>personal card</payment_method></expense>\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:44380/",
+					"raw": "https://localhost:44380/api/expense",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "44380",
 					"path": [
-						""
+						"api",
+						"expense"
 					]
 				},
 				"description": "Invalid request with missing closing tag of one the xml element inside the string"
@@ -86,6 +103,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -93,14 +115,15 @@
 					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre>1024.01</total><payment_method>personal card</payment_method></expense>\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:44380/",
+					"raw": "https://localhost:44380/api/expense",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "44380",
 					"path": [
-						""
+						"api",
+						"expense"
 					]
 				},
 				"description": "Invalid request with missing opening tag"
@@ -120,6 +143,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -127,14 +155,15 @@
 					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><total>1024.01</total><payment_method>personal card</payment_method></expense>\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:44380/",
+					"raw": "https://localhost:44380/api/expense",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "44380",
 					"path": [
-						""
+						"api",
+						"expense"
 					]
 				}
 			},
@@ -153,6 +182,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -160,14 +194,15 @@
 					"raw": "{\n\tEmailText: \"\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:44380/",
+					"raw": "https://localhost:44380/api/expense",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "44380",
 					"path": [
-						""
+						"api",
+						"expense"
 					]
 				},
 				"description": "Invalid request with email text missing"
@@ -187,6 +222,11 @@
 						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -194,14 +234,15 @@
 					"raw": "{\n\tEmailText: \"Hi Yvaine, \\\\n Please create an expense claim for the below. Relevant details are marked up as requested...\\\\n <expense><cost_centre>DEV002</cost_centre><payment_method>personal card</payment_method></expense>\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:44380/",
+					"raw": "https://localhost:44380/api/expense",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "44380",
 					"path": [
-						""
+						"api",
+						"expense"
 					]
 				},
 				"description": "Invalid request with total field missing"
