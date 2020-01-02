@@ -34,11 +34,11 @@ namespace DataImporterApi
 
             services.AddSwaggerDocument();
 
-            services.AddTransient<IApplicationService, ApplicationService>();
-            services.AddTransient<IExtractor, Extractor>();
-            services.AddTransient<IMappingService, MappingService>();
-            services.AddTransient<IValidationService, ValidationService>();
-            services.AddTransient<ITaxCalculator, TaxCalculator>();
+            services.AddScoped<IApplicationService, ApplicationService>();
+            services.AddScoped<IExtractor, Extractor>();
+            services.AddScoped<IMappingService, MappingService>();
+            services.AddScoped<IValidationService, ValidationService>();
+            services.AddScoped<ITaxCalculator, TaxCalculator>();
 
             // Add DbContext using SQL Server Provider
             services.AddDbContext<DataImporterContext>(options =>
