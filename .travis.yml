@@ -1,11 +1,11 @@
 language: csharp
 mono: none
 dist: xenial
-dotnet: 2.2.101
+dotnet: 3.1
 
 install:
-- dotnet restore
+  - dotnet restore
 
 script:
- - dotnet build
- - dotnet test Tests/DataImporter.Tests/DataImporter.Tests.csproj
+  - dotnet build
+  - dotnet test Tests/DataImporter.Tests/DataImporter.Tests.csproj
