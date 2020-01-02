@@ -5,7 +5,7 @@ using DataImporter.Persistence;
 using DataImporterApi.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,12 +25,13 @@ namespace DataImporterApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options => options.AddPolicy("MyPolicy", policy => policy.AllowAnyOrigin()));
-            
-            services.AddMvc(options => 
+            services
+                .AddMvc(options => 
                 {
                     options.Filters.Add<JsonExceptionFilter>();
                     options.Filters.Add<RequireHttpsOrCloseAttribute>();
-                });
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerDocument();
 
@@ -46,7 +47,7 @@ namespace DataImporterApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -59,20 +60,10 @@ namespace DataImporterApi
             }
 
             app.UseCors("MyPolicy");
-            
-            app.UseHttpsRedirection();
+            app.UseMvc();
 
             app.UseSwagger();
             app.UseSwaggerUi3();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
         }
     }
 }
