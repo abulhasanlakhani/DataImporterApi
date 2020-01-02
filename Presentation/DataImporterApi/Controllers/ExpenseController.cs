@@ -19,14 +19,21 @@ namespace DataImporterApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Consumes("application/json")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity,
             Type = typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary))]
         public ActionResult<ResponseModel<ExpenseModel>> CreateExpense(ExpenseRequestModel expenseRequest)
         {
-            return Created("", _applicationService.ProcessExpenseEmailText(expenseRequest.EmailText).ToViewModel());
+            var response = _applicationService.ProcessExpenseEmailText(expenseRequest.EmailText).ToViewModel();
+
+            if (!response.Success)
+            {
+                return BadRequest(response.Validation);
+            }
+
+            return Created("", response.Payload);
         }
     }
 }

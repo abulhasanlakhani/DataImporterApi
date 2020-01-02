@@ -32,6 +32,15 @@ namespace DataImporterApi
             services.AddControllers(setupAction =>
             {
                 setupAction.ReturnHttpNotAcceptable = true;
+                
+                setupAction.Filters.Add(
+                    new ProducesResponseTypeAttribute(StatusCodes.Status400BadRequest));
+                setupAction.Filters.Add(
+                    new ProducesResponseTypeAttribute(StatusCodes.Status406NotAcceptable));
+                setupAction.Filters.Add(
+                    new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
+                setupAction.Filters.Add(
+                    new ProducesDefaultResponseTypeAttribute());
 
             }).AddNewtonsoftJson(setupAction =>
             {
