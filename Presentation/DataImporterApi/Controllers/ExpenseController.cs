@@ -1,11 +1,13 @@
 ﻿using DataImporter.Business.Interfaces;
 using DataImporterApi.Extensions;
 using DataImporterApi.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataImporterApi.Controllers
 {
-    [Route("/")]
+    [Route("api/expense")]
+    [Produces("application/json")]
     [ApiController]
     public class ExpenseController : ControllerBase
     {
@@ -16,11 +18,22 @@ namespace DataImporterApi.Controllers
             _applicationService = applicationService;
         }
 
-        [HttpPost(Name = nameof(CreateExpense))]
-        [ProducesResponseType(200)]
-        public IActionResult CreateExpense([FromBody] ExpenseRequestModel expenseRequest)
+        [HttpPost]
+        [Consumes("application/json")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity,
+            Type = typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary))]
+        public ActionResult<ResponseModel<ExpenseModel>> CreateExpense(ExpenseRequestModel expenseRequest)
         {
-            return Ok(_applicationService.ProcessExpenseEmailText(expenseRequest.EmailText).ToViewModel());
+            var response = _applicationService.ProcessExpenseEmailText(expenseRequest.EmailText).ToViewModel();
+
+            if (!response.Success)
+            {
+                return BadRequest(response.Validation);
+            }
+
+            return Created("", response.Payload);
         }
     }
 }
